@@ -183,6 +183,21 @@ h6 {
     color: var(--accent-color);
 }
 
+/* Mobile Menu Toggle (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     background: none;
@@ -466,6 +481,10 @@ footer {
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
     .about-container {
         flex-direction: column;
     }
@@ -488,6 +507,18 @@ footer {
         font-size: 1.1rem;
     }
 
+    .container {
+        padding: 0 1rem;
+        /* Reduce padding further on small screens */
+    }
+
+    /* Fix Grid Overflow */
+    .services-grid,
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        /* Force single column */
+    }
+
     .btn-group {
         flex-direction: column;
         gap: 1rem;
@@ -498,8 +529,107 @@ footer {
         padding: 60px 0;
     }
 
+    .nav-container {
+        height: 60px;
+        /* Reduced height for mobile */
+    }
+
+    .hero {
+        padding-top: 60px;
+        /* Match new header height */
+    }
+
+    /* Mobile Navigation */
+    .menu-toggle {
+        display: flex;
+    }
+
     .nav-links {
-        display: none;
-        /* Simplification for mobile if js menu logic isn't there yet */
+        position: absolute;
+        top: 60px;
+        /* Match new header height */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-card);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        border-bottom: 1px solid var(--border-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-links.active {
+        max-height: 400px;
+        /* Adjust as needed */
+    }
+
+    .nav-link {
+        padding: 1.5rem 0;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+
+    /* Ensure theme toggle is visible/positioned correctly if needed, 
+       or maybe move it next to hamburger? 
+       For now, let's keep it in the dropdown or adjust strategy. 
+       The HTML structure has theme toggle inside .nav-links. 
+       So it will appear in the dropdown. */
+    .theme-toggle {
+        margin: 1.5rem 0;
+    }
+
+    /* Hamburger Animation */
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Portfolio: Show Always on Mobile (No Hover) */
+    .portfolio-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        justify-content: flex-end;
+        padding-bottom: 2rem;
+    }
+
+    .project-title,
+    .project-cat {
+        transform: translateY(0);
+    }
+}
+
+/* Extra Small Screens (Mobile S - 320px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.8rem;
+        /* Minimize padding on very small screens */
+    }
+
+    .logo {
+        font-size: 1.4rem;
+        /* Smaller logo for small screens */
+        letter-spacing: 1px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        /* Prevent huge headings */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 10px 24px;
+        /* Smaller buttons */
+        font-size: 0.8rem;
     }
 }
