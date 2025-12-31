@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | SK-INTERIO</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons (FontAwesome CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation (Reused) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">SK-INTERIO</a>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Hero Section -->
+    <header class="hero" style="min-height: 60vh;">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" id="project-title">Project Details</h1>
+                <p class="hero-subtitle" id="project-category">Interior Design</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Details Section -->
+    <section class="section">
+        <div class="container">
+            <div class="about-container" style="align-items: flex-start;">
+                <div class="about-image" style="flex: 1;">
+                    <img id="project-image" src="" alt="Project Image" style="width: 100%; border-radius: 4px;">
+                </div>
+                <div class="about-text" style="flex: 1;">
+                    <h2 class="section-title">Overview</h2>
+                    <p style="margin-bottom: 1.5rem;">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <p>
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <a href="portfolio.html" class="btn btn-outline" style="border-color: var(--text-primary); color: var(--text-primary);">Back to Portfolio</a>
+                        <a href="index.html#contact" class="btn">Inquire About This Look</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Reused) -->
+    <footer>
+        <div class="container">
+            <p style="color: var(--text-secondary)">&copy; 2024 SK-INTERIO. All rights reserved.</p>
+            <div style="margin-top: 1rem; font-size: 1.2rem;">
+                <a href="#" style="color: var(--text-primary); margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: var(--text-primary); margin: 0 10px;"><i class="fab fa-pinterest"></i></a>
+                <a href="#" style="color: var(--text-primary); margin: 0 10px;"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Simple script to populate details based on URL parameters
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectParam = urlParams.get('project');
+
+            // Dictionary of project data (mock database)
+            const projects = {
+                'azure-apartment': {
+                    title: 'The Azure Apartment',
+                    category: 'Residential',
+                    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                },
+                'onyx-bathhouse': {
+                    title: 'Onyx Bathhouse',
+                    category: 'Renovation',
+                    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                },
+                'skyline-penthouse': {
+                    title: 'Skyline Penthouse',
+                    category: 'Residential',
+                    img: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                },
+                'creative-hqs': {
+                    title: 'Creative HQs',
+                    category: 'Commercial',
+                    img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                },
+                'serenity-bedroom': {
+                    title: 'Serenity Bedroom',
+                    category: 'Residential',
+                    img: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                },
+                'manor-dining': {
+                    title: 'Manor Dining',
+                    category: 'Commercial',
+                    img: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                }
+            };
+
+            const project = projects[projectParam];
+
+            if (project) {
+                document.getElementById('project-title').textContent = project.title;
+                document.getElementById('project-category').textContent = project.category;
+                document.getElementById('project-image').src = project.img;
+                document.title = `${project.title} | SK-INTERIO`;
+            } else {
+                 // Fallback or Home redirect could go here
+                 document.getElementById('project-image').src = 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; // Default
+            }
+        });
+    </script>
+</body>
+
+</html>
