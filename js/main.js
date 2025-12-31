@@ -1,0 +1,41 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn.querySelector('i');
+    
+    // Check local storage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    // Apply initial theme
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    updateIcon(currentTheme);
+    
+    themeToggleBtn.addEventListener('click', () => {
+        // Toggle theme
+        currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Update DOM
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Save preference
+        localStorage.setItem('theme', currentTheme);
+        
+        // Update Icon
+        updateIcon(currentTheme);
+    });
+    
+    function updateIcon(theme) {
+        // Find the icon element again in case it was lost (though querySelector reference reference keeps it)
+        // Using Feather icons or FontAwesome classes usually.
+        // Assuming FontAwesome for now: fa-sun vs fa-moon
+        if (theme === 'dark') {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun'); // Show sun to switch to light
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon'); // Show moon to switch to dark
+        }
+    }
+});
